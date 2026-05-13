@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>上传书籍信息</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename = 'css/style-new_book.css') }}"
+    />
+  </head>
+  <!--上传书籍信息的相关界面-->
+  <body>
+    <div class="new-container">
+      <h2>上传书籍信息</h2>
+      <!--输入书名作者简介-->
+      <form enctype="multipart/form-data" id="bookForm" method="POST">
+        <input
+          type="text"
+          name="title"
+          placeholder="书名"
+          value="{{ request.form['title'] }}"
+          required
+        />
+        <input
+          type="text"
+          name="author"
+          placeholder="作者"
+          value="{{ request.form['author'] }}"
+          required
+        />
+        <textarea name="profile" placeholder="简介" required>
+{{ request.form['profile'] }}</textarea
+        >
+        <!--上传图片-->
+        <input type="file" name="cover" accept="image/*" required />
+        <input
+          type="text"
+          name="isbn"
+          placeholder="ISBN"
+          value="{{ request.form['isbn'] }}"
+          required
+        />
+        <!-- flash显示信息 用来检测是否每项内容都完成填写，以及ISBN等基本信息是否符合要求 -->
+        {% if get_flashed_messages() %}
+        <div class="flash-container">
+          {% for message in get_flashed_messages() %}
+          <div class="alert alert-danger">{{ message }}</div>
+          {% endfor %}
+        </div>
+        {% endif %}
+        <button type="submit">上传</button>
+      </form>
+    </div>
+    <script src="{{ url_for('static', filename = 'js/script-new_book.js') }}">
+      const averageRating = 1.5;
+      displayRating(averageRating);
+    </script>
+  </body>
+</html>

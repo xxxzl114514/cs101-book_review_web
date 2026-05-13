@@ -1,0 +1,273 @@
+body,
+html {
+  height: 100%; /* 设置 body 和 html 高度为 100%，使页面高度占满整个视口 */
+  margin: 0; /* 去除默认外边距 */
+  padding: 0; /* 去除默认内边距 */
+  display: flex; /* 使用 Flex 布局，使子元素水平排列 */
+  width: 100%; /* 设置宽度为 100% */
+}
+/*书籍界面显示的相关的CSS*/
+.background-image {
+  position: fixed; /* 固定定位，使背景图片固定在视口顶部 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  /* 宽度占满整个视口 */
+  height: 100%;
+  /* 高度占满整个视口 */
+  background-image: url("https://gimg2.baidu.com/..."); /* 设置背景图片 */
+  background-size: cover; /* 让背景图片覆盖整个容器 */
+  background-position: center; /* 背景图片居中显示 */
+  z-index: -1; /* 设置 z-index 为负值，使背景图片在其他元素下方 */
+}
+
+.flash-container {
+  position: fixed; /* 固定定位，悬浮在页面上方 */
+  top: 10px;
+  left: 50%; /* 水平居中 */
+  transform: translateX(-50%); /* 水平居中对齐 */
+  width: 100%; /* 宽度占满整个视口 */
+  max-width: 600px; /* 最大宽度限制为 600px */
+  z-index: 1000; /* 确保在所有内容上方 */
+  padding: 5px;
+  background-color: #f8d7da; /* 背景颜色为浅红色 */
+  border: 1px solid #f5c6cb; /* 边框颜色为浅红色 */
+  border-radius: 4px; /* 圆角边框 */
+  text-align: center; /* 文本居中对齐 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+  animation: fadein 0.5s, fadeout 0.5s 3.5s forwards; /* 淡入淡出动画 */
+}
+
+.alert {
+  padding: 10px; /* 内边距 */
+  margin-bottom: 10px; /* 下外边距 */
+  border: none; /* 无边框 */
+  border-radius: 4px; /* 圆角边框 */
+}
+
+.alert-danger {
+  color: #b14443; /* 文本颜色为深红色 */
+  font-size: 16px; /* 字体大小 */
+  background-color: #f2dede; /* 背景颜色为浅红色 */
+  border-color: #f2dede; /* 边框颜色与背景相同 */
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  } /* 透明度从 0 开始 */
+  to {
+    opacity: 1;
+  } /* 透明度变为 1 */
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  } /* 透明度从 1 开始 */
+  to {
+    opacity: 0;
+  } /* 透明度变为 0 */
+}
+
+.header-container {
+  display: flex; /* 使用 Flex 布局 */
+  align-items: stretch; /* 垂直方向拉伸 */
+  height: 40px; /* 设置高度 */
+  background-color: #ffffff80; /* 背景色为半透明白色 */
+  gap: 30px; /* 子元素间距 */
+  padding: 10px; /* 内边距 */
+  width: 100%; /* 宽度占满容器 */
+}
+
+.right-container,
+.left-container {
+  display: flex; /* 使用 Flex 布局 */
+  gap: 20px; /* 子元素间距 */
+  text-align: left; /* 文本左对齐 */
+  position: absolute;
+  /* 绝对定位 */
+}
+
+.left-container {
+  left: 20px; /* 距离左侧20px */
+}
+
+.right-container {
+  right: 20px; /* 距离右侧20px */
+}
+
+.username,
+.option {
+  top: 20px; /* 距离顶部 20px */
+  left: 20px; /* 距离左侧 20px */
+  font-size: 20px; /* 字体大小 */
+  color: #000000; /* 文本颜色为黑色 */
+  text-decoration: none; /* 去掉下划线 */
+  font-weight: bold; /* 加粗字体 */
+  padding: 5px 10px; /* 内边距 */
+  border-radius: 5px; /* 圆角边框 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 添加阴影效果 */
+  z-index: 10; /* 确保在其他元素之上 */
+  border: none; /* 无边框 */
+}
+
+.username {
+  background-color: rgba(255, 255, 255, 0.3); /* 半透明白色背景 */
+}
+
+.option {
+  background-color: rgba(255, 255, 255, 0.8); /* 同上 */
+  cursor: pointer; /* 鼠标悬停时显示指针 */
+}
+
+.option:hover {
+  background-color: rgba(255, 255, 255, 1);
+  /* 悬停时背景更亮 */
+  color: #0056b3;
+  /* 悬停时文本颜色更深 */
+}
+
+.option.new-book-button {
+  background-color: rgba(255, 255, 255, 0.2); /* 背景颜色更浅 */
+  color: white; /* 文本颜色为白色 */
+  padding: 10px 20px; /* 内边距 */
+  border: none; /* 无边框 */
+  border-radius: 5px; /* 圆角边框 */
+  cursor: pointer; /* 鼠标指针样式 */
+}
+
+.option.new-book-button:hover {
+  background-color: #45a049; /* 悬停时背景颜色变为绿色 */
+}
+
+#imageContainer {
+  position: absolute; /* 绝对定位 */
+  border: 1px solid #ccc; /* 边框颜色为灰色 */
+  padding: 10px; /* 内边距 */
+  width: 270px; /* 宽度 */
+  height: 395px; /* 高度 */
+  overflow: hidden; /* 超出部分隐藏 */
+  margin: 75px 50px 50px 50px; /* 外边距 */
+}
+
+#imageContainer img {
+  max-width: 100%; /* 图片最大宽度为容器宽度 */
+  max-height: 100%; /* 图片最大高度为容器高度 */
+}
+
+#infoContainer {
+  display: flex; /* 使用 Flex 布局 */
+  flex-direction: column; /* 垂直排列 */
+  justify-content: flex-start; /* 项目靠顶部对齐 */
+  width: 700px; /* 宽度 */
+  position: absolute; /* 绝对定位 */
+  top: 85px; /* 距离顶部 85px */
+  left: 370px; /* 距离左侧 370px */
+}
+
+#infoContainer div {
+  margin-bottom: 10px; /* 下外边距 */
+}
+
+#ratingContainer {
+  display: flex; /* 使用 Flex 布局 */
+  justify-content: flex-start; /* 项目靠左侧对齐 */
+  align-items: center; /* 垂直居中对齐 */
+  position: absolute; /* 绝对定位 */
+  top: 80px; /* 距离顶部 80px */
+  right: -330px; /* 距离右侧 -330px */
+  z-index: 10; /* 确保在最上层 */
+  font-family: "楷体"; /* 字体类型 */
+  font-size: 80px; /* 字体大小 */
+  font-weight: bold; /* 加粗字体 */
+}
+
+.star {
+  color: gold; /* 文本颜色为金色 */
+  font-size: 50px; /* 字体大小 */
+  margin-right: 5px; /* 右外边距 */
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.7); /* 添加阴影效果 */
+}
+
+.book-option {
+  width: auto; /* 宽度自适应 */
+  max-width: fit-content; /* 最大宽度适应内容 */
+  top: 20px; /* 距离顶部 20px */
+  left: 20px; /* 距离左侧 20px */
+  font-size: 20px; /* 字体大小 */
+  color: #000000; /* 文本颜色为黑色 */
+  text-decoration: none; /* 去掉下划线 */
+  font-weight: bold; /* 加粗字体 */
+  padding: 5px 10px; /* 内边距 */
+  border-radius: 5px; /* 圆角边框 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 添加阴影效果 */
+  z-index: 10; /* 确保在其他元素之上 */
+  border: none; /* 无边框 */
+  background-color: rgba(255, 255, 255, 0.8); /* 半透明白色背景 */
+  text-align: center; /* 文本居中对齐 */
+  cursor: pointer; /* 鼠标指针样式 */
+}
+
+.book-option:hover {
+  background-color: rgba(255, 255, 255, 1); /* 悬停时背景更亮 */
+  color: #0056b3; /* 悬停时文本颜色更深 */
+}
+
+#reviewContainer {
+  position: absolute; /* 绝对定位 */
+  width: 90%; /* 宽度占满容器的 90% */
+  background-color: #f0f0f0; /* 背景颜色为浅灰色 */
+  border: 2px solid #ccc; /* 边框颜色为灰色 */
+  border-radius: 10px; /* 圆角边框 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 添加阴影效果 */
+  padding: 20px; /* 内边距 */
+  font-family: Arial, sans-serif; /* 字体类型 */
+  color: #333; /* 文本颜色为深灰色 */
+  line-height: 1.5; /* 行高 */
+  margin-left: 50px; /* 左外边距 */
+  margin-top: 525px; /* 上外边距 */
+  overflow: auto; /* 内容超出时显示滚动条 */
+}
+
+.review {
+  margin-bottom: 15px; /* 下外边距 */
+}
+
+.review-content {
+  word-break: break-all;
+  /* 文本换行 */
+  word-wrap: break-word;
+  /* 文本换行 */
+}
+
+.review-footer {
+  display: flex; /* 使用 Flex 布局 */
+  justify-content: space-between; /* 项目左右分开 */
+  align-items: center; /* 垂直居中对齐 */
+  font-size: 14px; /* 字体大小 */
+}
+
+.review-author {
+  font-weight: bold; /* 加粗字体 */
+}
+
+.review-rating {
+  font-size: 18px; /* 字体大小 */
+  text-align: center; /* 文本居中对齐 */
+  margin-left: auto; /* 自动左外边距，使项目右对齐 */
+}
+
+#reviewContainer h2 {
+  margin: 0; /* 去除上下外边距 */
+  font-size: 24px; /* 字体大小 */
+  color: #007bff; /* 文本颜色为蓝色 */
+}
+
+#reviewContainer p {
+  margin-bottom: 10px; /* 下外边距 */
+}
+
+a {
+  text-decoration: none;
+}

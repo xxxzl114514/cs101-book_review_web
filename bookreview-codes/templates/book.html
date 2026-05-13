@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>《{{ book['title'] }}》——{{ book['author'] }}</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename = 'css/style-book.css') }}"
+    />
+  </head>
+
+  <body>
+    <div class="header-container">
+      <div class="left-container">
+        <a href="{{ url_for('index') }}" class="option">&#60;&#60;返回主页</a>
+        <!--返回主页页面的链接-->
+      </div>
+      <div class="right-container">
+        {% if username and user_id %}
+        <div class="username">{{ username }}</div>
+        <a href="{{ url_for('user', user_id=user_id) }}" class="option"
+          >用户主页</a
+        >
+        <form action="{{ url_for('logout') }}" method="POST">
+          <button class="option" type="submit">注销</button>
+        </form>
+        {% else %}
+        <a href="{{ url_for('login') }}" class="option">登录</a>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if get_flashed_messages() %}
+    <div class="flash-container">
+      <!--关于显示效果的容器-->
+      {% for message in get_flashed_messages() %}
+      <div class="alert alert-danger">{{ message }}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="background-image"></div>
+    <div id="imageContainer">
+      <img
+        id="dynamicImage"
+        src="{{ url_for('static', filename = 'covers/' + book['coverpath']) }}"
+        alt="书籍封面"
+      />
+      <!--这里图片路径根据后端要求可进行更改-->
+    </div>
+
+    <div id="infoContainer">
+      <div><strong>书名：</strong>《{{ book['title'] }}》</div>
+      <div><strong>作者：</strong>{{ book['author'] }}</div>
+      <div><strong>ISBN:</strong>{{ book['isbn'] }}</div>
+      <div><strong>内容简介：</strong></div>
+      <div>{{ book['profile'] }}</div>
+      <div><strong>创建者：</strong>{{ book['user_name'] }}</div>
+      <div><strong>创建时间：</strong>{{ book['created'] }}</div>
+
+      <div></div>
+      {% if user_id == book['user_id'] %}
+      <!--在这之下是编辑书籍 删除书籍 的按钮和相关链接-->
+      <div style="display: flex; gap: 20px">
+        <a
+          href="{{ url_for('edit_book', book_id=book['id']) }}"
+          class="book-option"
+          >编辑书籍</a
+        >
+        <form
+          action="{{ url_for('delete_book', book_id=book['id']) }}"
+          method="POST"
+        >
+          <button
+            class="book-option"
+            type="submit"
+            onclick="return confirm('确认删除？')"
+          >
+            删除书籍
+          </button>
+        </form>
+      </div>
+      <div></div>
+      {% endif %} {% if user_review_id %}
+      <!--在这之下是修改评论 新增评论 删除评论 的按钮和相关链接-->
+      <a
+        href="{{ url_for('new_review', book_id=book['id']) }}"
+        class="book-option"
+        >修改我的评论</a
+      >
+      <div></div>
+      <form
+        action="{{ url_for('delete_review', review_id=user_review_id) }}"
+        method="POST"
+      >
+        <button
+          class="book-option"
+          type="submit"
+          onclick="return confirm('确认删除？')"
+        >
+          删除我的评论
+        </button>
+      </form>
+      <div></div>
+      {% else %}
+      <a
+        href="{{ url_for('new_review', book_id=book['id']) }}"
+        class="book-option"
+        >为书籍撰写评论</a
+      >
+      <div></div>
+      {% endif %}
+
+      <div id="ratingContainer">
+        <div style="margin-top: -120px; margin-right: -85px; font-size: 26px">
+          {% if 1 < average_rating < 5 %} 读者评分 {% else %} 暂无评分 {% endif
+          %}
+        </div>
+        <div
+          id="ratingText"
+          style="
+            margin-top: 180px;
+            margin-right: -170px;
+            font-size: 26px;
+            text-align: center;
+          "
+        ></div>
+        <div id="stars"></div>
+      </div>
+    </div>
+
+    <div id="reviewContainer">
+      <!--书籍评论的容器-->
+      {% if reviews %} {% for review in reviews %}
+      <div class="review">
+        <p class="review-content">{{ review['content'] }}</p>
+        <div class="review-footer">
+          <span class="review-author"
+            ><a href="{{ url_for('user', user_id=review['user_id']) }}"
+              >{{ review['user_name'] }}</a
+            >
+            {{ review['created'] }}</span
+          >
+          <span class="review-rating">评分：{{ review['rating'] }}</span>
+        </div>
+        <hr />
+      </div>
+      {% endfor %} {% else %}
+      <h3>还没有评论喔...</h3>
+      {% endif %}
+    </div>
+
+    <div id="averageRatingElement" rating="{{ average_rating }}"></div>
+    <script src="{{ url_for('static', filename = 'js/script_book.js') }}"></script>
+  </body>
+</html>

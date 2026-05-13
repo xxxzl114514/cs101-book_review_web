@@ -1,0 +1,43 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+/*404界面对应的CSS*/
+body {
+  font-family: Arial, sans-serif;
+  background: url("../images/404.jpg") no-repeat center center fixed; /* 使用背景图片 */
+  background-size: cover; /* 设置背景大小以确保图片能够覆盖整个页面 */
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+h3 {
+  font-size: 28px;
+  color: #333;
+}
+
+/* 返回按钮样式 */
+.back-button {
+  position: absolute;
+  top: 20px; /* 距离顶部的距离为20px */
+  left: 20px; /* 距离左侧20px */
+  font-size: 20px; /* 字体大小20px */
+  color: #000000; /* 字体颜色 */
+  text-decoration: none; /* 去掉下划线 */
+  font-weight: bold; /* 加粗 */
+  background-color: rgba(255, 255, 255, 0.8); /* 半透明背景 */
+  padding: 5px 10px; /* 内边距 */
+  border-radius: 5px; /* 圆角 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 添加阴影 */
+  z-index: 10; /* 设置z轴确保在其他元素之上 */
+  cursor: pointer;
+  /* 鼠标悬停时显示指针 */
+}
+
+.back-button:hover {
+  background-color: rgba(255, 255, 255, 1); /* 悬停在此处时背景更亮 */
+  color: #0056b3; /* 字体颜色更深 */
+}

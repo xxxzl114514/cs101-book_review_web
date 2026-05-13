@@ -1,0 +1,146 @@
+/* styles-login.css */
+/* 登录界面相关的样式 */
+/* 设置 body 元素的字体、背景图片、边距和布局 */
+body {
+  font-family: Arial, sans-serif;
+  background: url("../images/background.jpg") no-repeat center center fixed;
+  /* 设置背景图片，不重复，居中，固定 */
+  background-size: cover; /* 背景图片覆盖整个视口 */
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* 提示信息的样式 */
+.flash-container {
+  width: 80%;
+  margin: 20px auto 5px; /* 上下边距 */
+  padding: 10px;
+}
+/* 提示框的样式 */
+.alert {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+/* 提示框的样式（红色背景） */
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+
+/* 登录表单容器的样式 */
+.login-container {
+  background: rgba(255, 255, 255, 0.8);
+  /* 白色半透明背景 */
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* 阴影效果 */
+  width: 300px;
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* 表单组的样式 */
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+label {
+  font-size: 14px;
+  color: #555;
+}
+
+/* 输入框的样式 */
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* 登录按钮的样式 */
+.login-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* 登录按钮悬停时的样式 */
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+/* 注册链接的样式 */
+.register-link {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.register-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+/* 忘记密码链接的样式 */
+.forgot-password-link {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.forgot-password-link a {
+  color: #ff4500;
+  text-decoration: none;
+}
+
+.forgot-password-link a:hover {
+  text-decoration: underline;
+}
+
+/* 返回按钮的样式 */
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 20px;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.8); /* 白色半透明背景 */
+  padding: 5px 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 阴影效果 */
+  z-index: 10;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  background-color: rgba(255, 255, 255, 1); /* 纯白色背景 */
+  color: #0056b3;
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>编辑书评</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename = 'css/style-new_review.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>编辑书评</h1>
+      <form method="post">
+        <div>
+          <label for="content"
+            >评论书籍：《{{ book['title'] }}》—— {{ book['author'] }}</label
+          >
+          <textarea id="content" name="content" placeholder="书评" required>
+{{ request.form['content'] or review['content'] }}</textarea
+          >
+        </div>
+        <label>评分：</label>
+        <div class="rating">
+          <input type="radio" name="rating" id="star5" value="5" />
+          <label for="star5" class="fas fa-star"></label>
+          <input type="radio" name="rating" id="star4" value="4" />
+          <label for="star4" class="fas fa-star"></label>
+          <input type="radio" name="rating" id="star3" value="3" />
+          <label for="star3" class="fas fa-star"></label>
+          <input type="radio" name="rating" id="star2" value="2" />
+          <label for="star2" class="fas fa-star"></label>
+          <input type="radio" name="rating" id="star1" value="1" />
+          <label for="star1" class="fas fa-star"></label>
+        </div>
+        <!-- flash显示信息 -->
+        <!--实现对于评分 评价的存储和显示-->
+        {% if get_flashed_messages() %}
+        <div class="flash-container">
+          {% for message in get_flashed_messages() %}
+          <div class="alert alert-danger">{{ message }}</div>
+          {% endfor %}
+        </div>
+        {% endif %}
+        <input type="submit" value="保存评论" />
+      </form>
+    </div>
+    <script src="{{ url_for('static', filename = 'js/script-new_review.js') }}"></script>
+  </body>
+</html>

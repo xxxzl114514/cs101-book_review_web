@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>忘记密码</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename = 'css/styles-forget.css') }}"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <a href="{{ url_for('login') }}" class="back-button">&#60;&#60;登录</a>
+    <!-- 返回登录界面的按钮 -->
+    <div class="forgot-password-container">
+      <!--忘记密码的相关容器，存储忘记密码的用户名并进行内容的检测 验证密保问题并实现修改密码的检验-->
+      <form id="forgotPasswordForm" class="forgot-password-form" method="POST">
+        <h2>忘记密码</h2>
+        <div class="form-group">
+          <label for="username">用户名</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="请输入用户名"
+            value="{{ request.form['username'] }}"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="securityQuestion">密保问题</label>
+          <p id="securityQuestion" class="security-question">
+            输入用户名以获取密保问题
+          </p>
+        </div>
+        <div class="form-group">
+          <label for="securityAnswer">密保答案</label>
+          <input
+            type="text"
+            id="securityAnswer"
+            name="securityAnswer"
+            placeholder="请输入密保答案"
+            value="{{ request.form['securityAnswer'] }}"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="newPassword">新密码</label>
+          <input
+            type="password"
+            id="newPassword"
+            name="newPassword"
+            placeholder="请输入新密码"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="confirmNewPassword">确认新密码</label>
+          <input
+            type="password"
+            id="confirmNewPassword"
+            name="confirmNewPassword"
+            placeholder="请再次输入新密码"
+            required
+          />
+        </div>
+        {% if get_flashed_messages() %}
+        <div class="flash-container">
+          {% for message in get_flashed_messages() %}
+          <div class="alert alert-danger">{{ message }}</div>
+          {% endfor %}
+        </div>
+        {% endif %}
+        <button type="submit" class="submit-button">提交</button>
+      </form>
+    </div>
+    <script src="{{ url_for('static', filename = 'js/script-forget.js') }}"></script>
+  </body>
+</html>

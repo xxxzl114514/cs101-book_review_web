@@ -1,0 +1,114 @@
+/* register 注册界面的视觉优化  */
+body {
+  font-family: Arial, sans-serif; /* 设置字体 */
+  background: url("../images/background-register.jpg") no-repeat center center
+    fixed;
+  /* 设置背景图片，不重复，固定在中心 */
+  background-size: cover; /* 背景图片覆盖整个页面 */
+  margin: 0; /* 设置边距为0 */
+  display: flex; /* 使用Flex布局 */
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* �orizhontal center */
+  height: 100vh; /* 页面高度为视口高度 */
+}
+
+/* flash容器和alert */
+.flash-container {
+  width: 80%; /* 宽度为80% */
+  margin: 20px auto 5px; /* 上边距20px，左右自动，下边距5px */
+  padding: 10px; /* 内边距10px */
+}
+.alert {
+  padding: 10px; /* 内边距10px */
+  margin-bottom: 10px; /* 下边距10px */
+  border: 1px solid transparent; /* 边框1px，透明 */
+  border-radius: 4px; /* 圆角4px */
+}
+.alert-danger {
+  color: #a94442; /* 文字颜色 */
+  background-color: #f2dede; /* 背景颜色 */
+  border-color: #ebccd1; /* 边框颜色 */
+}
+
+.register-container {
+  background: #fff; /* 白色背景 */
+  padding: 20px 30px; /* 内边距20px上 下，30px左 右 */
+  border-radius: 10px; /* 圆角10px */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+  width: 400px; /* 宽度400px */
+  text-align: center; /* 文本居中 */
+}
+
+h2 {
+  margin-bottom: 20px; /* 下边距20px */
+  color: #333; /* 文字颜色 */
+}
+
+.form-group {
+  margin-bottom: 15px; /* 下边距15px */
+  text-align: left; /* 文本左对齐 */
+}
+
+label {
+  font-size: 14px; /* 字体大小 */
+  color: #555; /* 文字颜色 */
+}
+
+input[type="text"],
+input[type="password"],
+select {
+  width: 100%; /* 宽度100% */
+  padding: 10px; /* 内边距10px */
+  margin-top: 5px; /* 上边距5px */
+  border: 1px solid #ddd; /* 边框1px，灰色 */
+  border-radius: 5px; /* 圆角5px */
+  font-size: 14px; /* 字体大小 */
+}
+
+select {
+  appearance: none; /* 去除默认样式 */
+  background-color: #fff; /* 背景白色 */
+  cursor: pointer; /* 鼠标指针 */
+}
+
+input:focus,
+select:focus {
+  border-color: #007bff; /* 边框颜色 */
+  outline: none; /* 去除默认轮廓 */
+}
+
+.register-button {
+  width: 100%; /* 宽度100% */
+  padding: 10px; /* 内边距10px */
+  background-color: #007bff; /* 背景颜色 */
+  border: none; /* 无边框 */
+  border-radius: 5px; /* 圆角5px */
+  color: white; /* 文字颜色 */
+  font-size: 16px; /* 字体大小 */
+  cursor: pointer; /* 鼠标指针 */
+}
+
+.register-button:hover {
+  background-color: #0056b3; /* 鼠标悬停时背景颜色 */
+}
+
+/* 返回按钮样式 */
+.back-button {
+  position: absolute; /* 绝对定位 */
+  top: 20px; /* 距离顶部20px */
+  left: 20px; /* 距离左侧20px */
+  font-size: 20px; /* 字体大小 */
+  color: #007bff; /* 文字颜色 */
+  text-decoration: none; /* 无下划线 */
+  font-weight: bold; /* 加粗 */
+  background-color: rgba(255, 255, 255, 0.8); /* 半透明背景 */
+  padding: 5px 10px; /* 内边距 */
+  border-radius: 5px; /* 圆角5px */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 阴影效果 */
+  z-index: 10; /* 层级 */
+}
+
+.back-button:hover {
+  background-color: rgba(255, 255, 255, 1); /* 鼠标悬停时背景颜色 */
+  color: #0056b3; /* 文字颜色 */
+}

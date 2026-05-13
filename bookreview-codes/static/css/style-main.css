@@ -1,0 +1,195 @@
+/*  main.css主要用于定义主页面的样式，包括幻灯片轮播、刷新按钮、导航、登录表单等 */
+* {
+  box-sizing: border-box; /* 所有元素使用盒模型包含 padding 和 border */
+}
+.slideshow-container {
+  position: relative; /* 相对定位 */
+  max-width: 100%; /* 最大宽度占满 */
+  height: 500px; /* 高度 */
+  margin: auto; /* 水平居中对齐 */
+  overflow: hidden; /* 超出部分隐藏 */
+}
+.mySlides {
+  display: none; /* 隐藏所有幻灯片 */
+  width: 100%;
+  height: 100%;
+  /* 宽度高度占满容器 */
+  background-size: cover; /* 背景图片覆盖整个容器 */
+  background-position: center; /* 背景图片居中显示 */
+}
+
+.dot {
+  cursor: pointer; /* 鼠标指针样式 */
+  height: 15px; /* 高度 */
+  width: 15px; /* 宽度 */
+  margin: 0 5px; /* 左右外边距 */
+  background-color: #bbb; /* 背景颜色为灰色 */
+  border-radius: 50%; /* 圆形 */
+  display: inline-block; /* 内联块元素 */
+  position: relative; /* 相对定位 */
+  top: -30px; /* 距离顶部 -30px */
+}
+
+.active,
+.dot:hover {
+  background-color: #717171; /* 活动状态或悬停时背景颜色更深 */
+}
+
+.fade {
+  animation-name: fade; /* 动画名称 */
+  animation-duration: 1.5s; /* 动画持续时间 */
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  } /* 透明度从 0.4 开始 */
+  to {
+    opacity: 1;
+  } /* 透明度变为 1 */
+}
+
+.refresh-section {
+  display: flex; /* 使用 Flex 布局 */
+  flex-direction: column; /* 垂直排列 */
+  align-items: center; /* 项目居中对齐 */
+  margin: 20px 0; /* 上下外边距 */
+  cursor: pointer; /* 鼠标指针样式 */
+}
+
+.refresh-icon {
+  width: 50px; /* 宽度 */
+  height: 50px; /* 高度 */
+  border: 3px solid #2e8bc0; /* 边框颜色为蓝色 */
+  border-radius: 50%; /* 圆形 */
+  border-top: 3px solid transparent; /* 顶部边框透明 */
+  animation: spin 2s linear infinite; /* 旋转动画 */
+}
+
+.refresh-section:hover .refresh-icon {
+  animation: spin 1s linear infinite; /* 悬停时动画速度加快 */
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  } /* 旋转 0 度 */
+  to {
+    transform: rotate(360deg);
+  } /* 旋转 360 度 */
+}
+
+.refresh-text {
+  font-size: 16px; /* 字体大小 */
+  color: #2e8bc0; /* 文本颜色为蓝色 */
+  margin-top: 10px; /* 上外边距 */
+  font-family: "微软雅黑", sans-serif; /* 字体类型 */
+  cursor: pointer; /* 鼠标指针样式 */
+}
+
+.refresh-section:hover .refresh-text {
+  color: #1b5a80; /* 悬停时文本颜色更深 */
+}
+
+.prev,
+.next {
+  cursor: pointer; /* 鼠标指针样式 */
+  position: absolute; /* 绝对定位 */
+  top: 50%; /* 垂直居中对齐 */
+  transform: translateY(-50%); /* 向上移动自身高度的一半 */
+  color: white; /* 文本颜色为白色 */
+  font-size: 18px; /* 字体大小 */
+  padding: 16px; /* 内边距 */
+  user-select: none; /* 禁止选中文本 */
+  z-index: 1; /* 确保在图片之上 */
+}
+
+.prev {
+  left: 10px; /* 距离左侧 10px */
+}
+
+.next {
+  right: 10px; /* 距离右侧 10px */
+}
+
+body {
+  font-family: Arial, sans-serif; /* 字体类型 */
+  margin: 0; /* 去除外边距 */
+  padding: 0; /* 去除内边距 */
+  height: 100vh; /* 高度占满整个视口 */
+  background: url("background.jpg") no-repeat center center fixed; /* 设置背景图片，不重复，居中固定 */
+  background-size: cover; /* 背景图片覆盖整个容器 */
+}
+
+.login-container {
+  background: rgba(255, 255, 255, 0.8); /* 背景颜色为半透明白色 */
+  padding: 20px 30px; /* 内边距 */
+  border-radius: 10px; /* 圆角边框 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+  width: 300px; /* 宽度 */
+  margin: auto; /* 水平居中对齐 */
+  position: absolute; /* 绝对定位 */
+  top: 50%; /* 距离顶部 50% */
+  left: 50%; /* 距离左侧 50% */
+  transform: translate(-50%, -50%); /* 水平和垂直居中对齐 */
+  text-align: center; /* 文本居中对齐 */
+}
+
+h2 {
+  margin-bottom: 20px; /* 下外边距 */
+  color: #333; /* 文本颜色为深灰色 */
+}
+
+.form-group {
+  margin-bottom: 15px; /* 下外边距 */
+  text-align: left; /* 文本左对齐 */
+}
+
+label {
+  font-size: 14px; /* 字体大小 */
+  color: #555; /* 文本颜色为灰色 */
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%; /* 宽度占满容器 */
+  padding: 10px; /* 内边距 */
+  margin-top: 5px; /* 上外边距 */
+  border: 1px solid #ddd; /* 边框颜色为浅灰色 */
+  border-radius: 5px; /* 圆角边框 */
+  font-size: 14px; /* 字体大小 */
+}
+
+input:focus {
+  border-color: #007bff; /* 获取焦点时边框颜色变为蓝色 */
+  outline: none; /* 去除默认轮廓 */
+}
+
+.login-button {
+  width: 100%; /* 宽度占满容器 */
+  padding: 10px; /* 内边距 */
+  background-color: #007bff; /* 背景颜色为蓝色 */
+  border: none; /* 无边框 */
+  border-radius: 5px; /* 圆角边框 */
+  color: white; /* 文本颜色为白色 */
+  font-size: 16px; /* 字体大小 */
+  cursor: pointer; /* 鼠标指针样式 */
+}
+
+.login-button:hover {
+  background-color: #0056b3; /* 悬停时背景颜色更深 */
+}
+
+.register-link {
+  margin-top: 15px; /* 上外边距 */
+  font-size: 14px; /* 字体大小 */
+}
+
+.register-link a {
+  color: #007bff; /* 文本颜色为蓝色 */
+  text-decoration: none; /* 去掉下划线 */
+}
+
+.register-link a:hover {
+  text-decoration: underline; /* 悬停时下划线 */
+}

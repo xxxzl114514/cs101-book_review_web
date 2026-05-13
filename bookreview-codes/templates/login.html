@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>登录页面</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename = 'css/style-login.css') }}"
+    />
+  </head>
+  <!--Login.html是登录页面相关-->
+  <body>
+    <a href="{{ url_for('index') }}" class="back-button">&#60;&#60;返回主页</a>
+    <!-- 返回主页的按钮 -->
+    <div class="login-container">
+      <!--login容器，用来存储输入的用户名 密码 链接数据库进行内容比对-->
+      <form class="login-form" id="loginForm" method="POST">
+        <h2>登录</h2>
+        <div class="form-group">
+          <label for="username">用户名</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="请输入用户名"
+            value="{{ request.form['username'] }}"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="password">密码</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="请输入密码"
+            required
+          />
+        </div>
+        {% if get_flashed_messages() %}
+        <div class="flash-container">
+          <!--提示信息存储容器 如果密码错误 用户名不存在要在这里显示-->
+          {% for message in get_flashed_messages() %}
+          <div class="alert alert-danger">{{ message }}</div>
+          {% endfor %}
+        </div>
+        {% endif %}
+        <button type="submit" class="login-button">登录</button>
+      </form>
+      <p class="register-link">
+        <!--注册账号的链接 并在这里进行相关内容的 提示-->
+        还没有账号？<a href="{{ url_for('register') }}">点击注册</a>
+      </p>
+      <p class="forgot-password-link">
+        <!--忘记密码 的相关链接-->
+        <a href="{{ url_for('forget') }}">忘记密码？</a>
+      </p>
+    </div>
+  </body>
+</html>

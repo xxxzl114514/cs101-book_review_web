@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>济计好书网</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename = 'css/style.css') }}"
+    />
+  </head>
+  <!--index.html是主页界面相关-->
+  <body>
+    {% if get_flashed_messages() %}
+    <div class="flash-container">
+      {% for message in get_flashed_messages() %}
+      <div class="alert alert-danger">{{ message }}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
+    <!--这是主页面的HTML设计-->
+    <div class="header-container">
+      <div class="header">济计好书网</div>
+      <div class="right-container">
+        <!-- 在主页最上端的最右侧容器中放置几个链接 -->
+        <!--显示个人主页链接 账号注销链接 以及登录链接-->
+        <div class="option-container">
+          {% if username and user_id %}
+          <div class="username">{{ username }}</div>
+          <a href="{{ url_for('user', user_id=user_id) }}" class="option"
+            >个人主页</a
+          >
+          <form action="{{ url_for('logout') }}" method="POST">
+            <button class="option" type="submit">注销</button>
+          </form>
+          {% else %}
+          <a href="{{ url_for('login') }}" class="option">登录</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- 主页面用来装饰的滑动轮流展示的幻灯片  -->
+    <div class="slideshow-container">
+      <!--下面是轮流展示的三张幻灯片的图片的来源-->
+      <div
+        class="mySlides fade"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1525384387570-c1d131e69885?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=tim-mossholder-7auNlxdbnik-unsplash.jpg');
+        "
+      ></div>
+      <div
+        class="mySlides fade"
+        style="
+          background-image: url('https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F201805%2F29%2F20180529151522_wBXQT.jpeg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1734711320&t=f1b6834303fddab323816580218273e1');
+        "
+      ></div>
+      <div
+        class="mySlides fade"
+        style="
+          background-image: url('https://pic1.zhimg.com/v2-b285bc966b2d5a643137316c32722dd8_r.jpg');
+        "
+      ></div>
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      <!--幻灯片轮换进行展示的位置 -->
+      <div class="dots-container">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="book-list">书籍列表：</h2>
+
+      <!-- 书籍检索功能 可以输入书籍相关的内容进行检索-->
+      <div class="search-container">
+        <form id="BookSearchForm" class="book-search-form" method="GET">
+          <input
+            type="text"
+            id="keyword"
+            name="keyword"
+            placeholder="搜索书籍"
+            value="{{ request.args['keyword'] }}"
+          />
+          <button type="submit" class="search-button">搜索</button>
+        </form>
+        <a href="{{ url_for('new_book') }}" class="newbook-button">新增书籍</a>
+      </div>
+      <!--书籍的容器，用来存储书籍的相关信息-->
+      <div class="book-container">
+        {% for book in books %}
+        <a href="{{ url_for('book', book_id=book['id']) }}">
+          <div class="book-item">
+            <img
+              src="{{ url_for('static', filename = 'covers/' + book['coverpath']) }}"
+              alt="书籍封面"
+            />
+            <h3>书名：{{ book['title'] }}</h3>
+            <p>作者：{{ book['author'] }}</p>
+            <p>ISBN: {{ book['isbn'] }}</p>
+          </div>
+        </a>
+        <!--如果遍历了数据库还是没有找到搜索的书籍则返回还没有书籍喔 的提示-->
+        {% endfor %} {% if not books %}
+        <h3>还没有书籍喔...</h3>
+        {% endif %}
+      </div>
+
+      <!-- 刷新区域 -->
+      {% if books %}
+      <div class="refresh-section" onclick="refreshBooks()">
+        <!-- 刷新的图标 -->
+        <div class="refresh-icon"></div>
+        <!-- 刷新提示文字 -->
+        <p class="refresh-text">没有想要的？换一批</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- 页面底部 存放版权的相关信息 -->
+    <footer>&copy; 2024 济计好书网. 不保留所有权利。</footer>
+
+    <script src="{{ url_for('static', filename = 'js/script-main.js') }}"></script>
+  </body>
+</html>

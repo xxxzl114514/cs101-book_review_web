@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>个人主页</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename = 'css/style-user.css') }}"
+    />
+  </head>
+  <body>
+    <!--个人主页的界面-->
+    <div class="header-container">
+      <div class="left-container">
+        <a href="{{ url_for('index') }}" class="option">&#60;&#60;返回主页</a>
+      </div>
+      <!--返回主页界面的链接-->
+      <div class="right-container">
+        {% if self_username and self_user_id %}
+        <div class="username">{{ self_username }}</div>
+        {% if self_user_id == user['id'] %}
+        <a href="{{ url_for('edit_user') }}" class="option">编辑个人信息</a>
+        {% else %}
+        <a href="{{ url_for('user', user_id=self_user_id) }}" class="option"
+          >我的主页</a
+        >
+        {% endif %}
+        <form action="{{ url_for('logout') }}" method="POST">
+          <button class="option" type="submit">注销</button>
+        </form>
+        <!--在个人主页界面也显示注销登录等功能，同时显示个人相关信息-->
+        {% else %}
+        <a href="{{ url_for('login') }}" class="option">登录</a>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- 如果有操作（比如左击注销）会有提示 通过flash-container进行显示 -->
+    {% if get_flashed_messages() %}
+    <div class="flash-container">
+      {% for message in get_flashed_messages() %}
+      <div class="alert alert-danger">{{ message }}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <header>
+      <div class="container">
+        <h1>{{ user['username'] }} 的个人主页</h1>
+        <nav>
+          <ul>
+            <li><a href="#about">个性签名</a></li>
+            <li><a href="#user-review">发表的评论</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="avatar">
+        <img
+          src="{{ url_for('static', filename = 'userprofiles/' + user['profilepath']) }}"
+          alt="{{ user['username'] }}的头像"
+        />
+      </div>
+    </div>
+
+    <section id="about" class="section">
+      <div class="container">
+        <h2>个性签名</h2>
+        <div class="bio-container">
+          <p>{{ user['bio'] }}</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="user-review" class="section">
+      <div class="container">
+        <h2>发表的评论</h2>
+        <div class="reviewContainer">
+          {% if reviews %} {% for review in reviews %}
+          <div class="review">
+            <p class="review-content">{{ review['content'] }}</p>
+            <div class="review-footer">
+              <span class="review-author"
+                >{{ review['user_name'] }} {{ review['created'] }}</span
+              >
+              <span class="review-rating">评分：{{ review['rating'] }}</span>
+            </div>
+            <div class="review-footer">
+              <span class="review-author">
+                关于
+                <a href="{{ url_for('book', book_id=review['book_id']) }}"
+                  >《{{ review['book_title'] }}》 —— {{ review['book_author']
+                  }}</a
+                >
+              </span>
+            </div>
+            <hr />
+          </div>
+          {% endfor %} {% else %}
+          <h3>还没有评论喔...</h3>
+          {% endif %}
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2024 济计好书网. 不保留所有权利。</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename = 'js/script-user.js') }}"></script>
+  </body>
+</html>

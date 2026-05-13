@@ -1,0 +1,442 @@
+/*主页的全局样式文件，定义了通用的样式规则，如全局盒子模型、提示信息容器、导航栏、右侧选项容器*/
+* {
+  padding: 0px;
+  margin: 0px;
+}
+/*flash容器*/
+.flash-container {
+  position: fixed; /* 固定定位，悬浮在页面上方 */
+  top: 10px;
+  left: 50%; /* 水平居中对齐 */
+  transform: translateX(-50%); /* 水平居中对齐 */
+  width: 100%; /* 宽度占满整个视口 */
+  max-width: 600px; /* 最大宽度限制 */
+  z-index: 1000; /* 确保在所有内容上方 */
+  padding: 5px; /* 内边距 */
+  background-color: #f8d7da; /* 背景颜色为浅红色 */
+  border: 1px solid #f5c6cb; /* 边框颜色为浅红色 */
+  border-radius: 4px; /* 圆角边框 */
+  text-align: center; /* 文本居中对齐 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+  animation: fadein 0.5s, fadeout 0.5s 3.5s forwards; /* 淡入淡出动画 */
+  align-items: center; /* 垂直居中对齐 */
+}
+
+.alert {
+  padding: 10px; /* 内边距 */
+  margin-bottom: 10px; /* 下外边距 */
+  border: none; /* 无边框 */
+  border-radius: 4px; /* 圆角边框 */
+}
+
+.alert-danger {
+  color: #b14443; /* 文本颜色为深红色 */
+  font-size: 16px; /* 字体大小 */
+  background-color: #f2dede; /* 背景颜色为浅红色 */
+  border-color: #f2dede; /* 边框颜色为浅红色 */
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  } /* 透明度从 0 开始 */
+  to {
+    opacity: 1;
+  } /* 透明度变为 1 */
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  } /* 透明度从 1 开始 */
+  to {
+    opacity: 0;
+  } /* 透明度变为 0 */
+}
+
+.header-container {
+  display: flex;
+  /* 使用flexbox布局 */
+  align-items: stretch;
+  /* 垂直方向拉伸 */
+  height: 80px;
+  /* 设置高度 */
+  background-color: rgba(52, 43, 8, 0.5);
+  /* 背景色 */
+}
+
+.header {
+  color: white;
+  /* 字体颜色为白色 */
+  font-size: 53px;
+  /* 字体大小 */
+  z-index: 3;
+  /* 确保在幻灯片之上 */
+  padding: 10px;
+  /* 内边距 */
+  font-family: "隶书";
+  /* 字体 */
+  flex-shrink: 0;
+  /* 不允许缩小 */
+}
+
+footer {
+  display: flex;
+  /* 使用flexbox布局 */
+  align-items: center;
+  /* 垂直方向拉伸 */
+  height: 50px;
+  /* 设置高度 */
+  background-color: rgba(241, 241, 239, 0.692);
+  /* 背景色 */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  color: rgb(86, 84, 84);
+  /* 字体颜色为白色 */
+  font-size: 15px;
+  /* 字体大小 */
+  z-index: 3;
+  /* 确保在幻灯片之上 */
+  padding: 10px;
+  /* 内边距 */
+  font-family: "微软雅黑", sans-serif;
+  /* 字体 */
+  flex-shrink: 0;
+  /* 不允许缩小 */
+}
+
+.right-container {
+  flex-grow: 1;
+  /* 占满剩余空间 */
+  background-color: rgba(15, 142, 221, 0.8);
+  /* 设置右侧容器的背景色 */
+  padding: 20px;
+  /* 内边距 */
+  overflow-y: auto;
+  /* 超出时出现滚动条 */
+  position: relative;
+  /* 相对定位，以便放置子容器 */
+}
+
+.option-container {
+  position: absolute;
+  /* 绝对定位 */
+  right: 20px;
+  /* 靠右20像素 */
+  display: flex;
+  /* 使用 flex 布局 */
+  flex-direction: row;
+  /* 水平方向排布 */
+  gap: 20px;
+  /* 间隔20像素 */
+}
+
+.username,
+.option {
+  top: 20px; /* 距离顶部 */
+  left: 20px; /* 距离左侧 */
+  font-size: 20px; /* 字体大小 */
+  color: #000000; /* 字体颜色 */
+  text-decoration: none; /* 去掉下划线 */
+  font-weight: bold; /* 加粗 */
+  padding: 5px 10px; /* 内边距 */
+  border-radius: 5px; /* 圆角 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 添加阴影 */
+  z-index: 10; /* 确保在其他元素之上 */
+  border: none;
+}
+.username {
+  background-color: rgba(255, 255, 255, 0.3); /* 半透明背景 */
+}
+.option {
+  background-color: rgba(255, 255, 255, 0.8); /* 半透明背景 */
+  cursor: pointer;
+  /* 鼠标悬停时显示指针 */
+}
+.option:hover {
+  background-color: rgba(255, 255, 255, 1); /* 悬停时背景更亮 */
+  color: #0056b3; /* 字体颜色更深 */
+}
+
+/* 在 style.css 中添加新的样式规则 */
+.option.new-book-button {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white; /* 白色文字 */
+  padding: 10px 20px; /* 内边距 */
+  border: none; /* 无边框 */
+  border-radius: 5px; /* 圆角 */
+  cursor: pointer; /* 鼠标指针样式 */
+}
+
+.option.new-book-button:hover {
+  background-color: #45a049; /* 鼠标悬停时的背景颜色 */
+}
+
+.slideshow-container {
+  position: relative;
+  max-width: 100%;
+  height: 500px;
+  margin: auto;
+  /* 居中 */
+  overflow: hidden;
+  /* 隐藏超出部分 */
+  transform: translateY(0);
+  /* 向下移动的方法将留空 */
+}
+
+.mySlides {
+  display: none;
+  /* 隐藏所有幻灯片 */
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  /* 背景覆盖 */
+  background-position: center;
+  /* 背景居中 */
+}
+
+/* 箭头样式 */
+.prev,
+.next {
+  cursor: pointer;
+  /* 鼠标悬停时显示指针 */
+  position: absolute;
+  /* 绝对定位 */
+  top: 50%;
+  /* 垂直居中 */
+  transform: translateY(-50%);
+  /* 向上移动自身高度的一半 */
+  color: white;
+  /* 箭头颜色 */
+  font-size: 18px;
+  /* 箭头字体大小 */
+  padding: 16px;
+  /* 箭头内边距 */
+  user-select: none;
+  /* 禁止选中 */
+  z-index: 1;
+  /* 确保箭头在图片之上 */
+}
+
+.prev {
+  left: 10px;
+  /* 左侧位置 */
+}
+
+.next {
+  right: 10px;
+  /* 右侧位置 */
+}
+
+.dot {
+  height: 15px;
+  /* 点的高度 */
+  width: 15px;
+  /* 点的宽度 */
+  margin: 0 5px;
+  /* 左右间距 */
+  background-color: #bbb;
+  /* 点的颜色 */
+  border-radius: 50%;
+  /* 圆形 */
+  display: inline-block;
+  /* 使其成为内联块元素 */
+  cursor: pointer;
+  /* 鼠标悬停时显示指针 */
+}
+
+.dot.active {
+  background-color: #717171;
+  /* 点击的点颜色 */
+}
+
+/* 添加圆点定位的样式 */
+.dots-container {
+  text-align: center;
+  position: absolute;
+  bottom: 20px;
+  /* 距离幻灯片底部的距离 */
+  left: 0;
+  right: 0;
+  z-index: 2;
+  /* 确保在箭头之上 */
+}
+
+.book-list {
+  font-family: "微软雅黑", sans-serif;
+  /* 字体 */
+  font-size: 26px;
+  /* 字体大小 */
+  color: #2e8bc0;
+  /* 字体颜色 */
+  margin: 0px 0;
+  /* 上下外边距 */
+  padding: 10px;
+  /* 内边距 */
+  background-color: #cbcabd;
+  /* 背景色 */
+  border-radius: 8px;
+  /* 圆角 */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  /* 阴影 */
+  transition: all 0.3s;
+}
+
+/* 添加过渡效果 */
+.book-list:hover {
+  color: #cbcabd;
+  /* 鼠标悬停时字体颜色 */
+  background-color: #2e8bc0;
+  /* 鼠标悬停时背景色 */
+}
+
+.book-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  justify-content: center;
+}
+
+.book-item {
+  width: 150px;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.book-item img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.book-item h3 {
+  font-size: 16px;
+  color: #333;
+  margin: 10px 0 5px;
+}
+
+.book-item p {
+  font-size: 14px;
+  color: #666;
+}
+
+.book-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.refresh-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+  cursor: pointer;
+  /* 整个区域，包括文字，都应显示点击手势 */
+}
+
+.refresh-icon {
+  width: 50px;
+  height: 50px;
+  border: 3px solid #2e8bc0;
+  border-radius: 50%;
+  border-top: 3px solid transparent;
+  animation: spin 2s linear infinite;
+}
+
+.refresh-section:hover .refresh-icon {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.refresh-text {
+  font-size: 16px;
+  color: #2e8bc0;
+  margin-top: 10px;
+  font-family: "微软雅黑", sans-serif;
+  cursor: pointer;
+  /* 鼠标指针显示为可点击手型 */
+}
+
+.refresh-section:hover .refresh-text {
+  color: #1b5a80;
+  /* 鼠标悬停时，颜色变化 */
+}
+
+a {
+  text-decoration: none;
+}
+
+/* 搜索容器 */
+.search-container {
+  display: flex;
+  font-family: "微软雅黑", sans-serif;
+  font-size: 20px;
+  background: rgba(255, 255, 255, 0.8); /* 半透明白色背景 */
+  margin: 20px auto;
+  padding: 10px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  gap: 40px;
+}
+/* 搜索框 */
+.book-search-form {
+  width: 90%;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+/* 搜索按钮 */
+.search-button {
+  width: 20%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  background-color: rgb(221, 240, 240);
+  border-radius: 5px;
+  font-size: 18px;
+}
+.search-button:hover {
+  background-color: #becad6;
+}
+
+.newbook-button {
+  width: 10%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  background-color: rgb(221, 240, 240);
+  border-radius: 5px;
+  font-size: 18px;
+  text-align: center;
+}
+.newbook-button:hover {
+  background-color: #becad6;
+}
+
+label {
+  font-size: 14px;
+  color: #555;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 18px;
+}
